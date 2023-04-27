@@ -5,7 +5,7 @@ const input = {
     name: "john",
     address: {
         street: "street",
-        number: "123",
+        number: 123,
         zip: "zip",
         city: "city"
     }
@@ -28,7 +28,7 @@ describe("unit test create customer use case", () => {
 
         const result = await ccuc.execute(input);
 
-        const output = {
+        expect(result).toEqual({
             id: expect.any(String),
             name: input.name,
             address: {
@@ -37,9 +37,8 @@ describe("unit test create customer use case", () => {
                 zip: input.address.zip,
                 city: input.address.city
             }
-        }
+        });
 
-        expect(result).toEqual(output);
     });
 
     it("should throw an error when name is missing", async () => {
@@ -48,10 +47,6 @@ describe("unit test create customer use case", () => {
 
         input.name = "";
         const result = await ccuc.execute(input);
-        await expect(await ccuc.execute(input)).rejects.toThrow({"Name is required"});
+        await expect(await ccuc.execute(input)).rejects.toThrow("Name is required");
     });
 });
-
-function expect(result: OutputCreateCustomerDTO) {
-    throw new Error("Function not implemented.");
-}

@@ -1,4 +1,3 @@
-import { DESCRIBE } from "sequelize/types/query-types";
 import ProductFactory from "../../../domain/product/factory/product.factory";
 import ListProductUseCase from "./list.product.usecase";
 
