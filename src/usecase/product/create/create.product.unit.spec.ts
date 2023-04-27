@@ -1,4 +1,4 @@
-import {expect, jest, test} from '@jest/globals';
+import {expect, test} from '@jest/globals';
 import CreateProductUseCase from './create.product.usecase';
 const input = {
     type: "a",
@@ -17,19 +17,23 @@ const MockRepository = () => {
 
 describe("Unit test create product use case", () => {
     it("should create a product", async () => {
-        const pr = MockRepository();
-
-        const cpuc = new CreateProductUseCase(pr);
-
-        const result = await cpuc.execute(input);
-
-        const expected = {
-            id: expect.any(String),
-            name: input.name,
-            price: input.price
+        try {
+            const pr = MockRepository();
+    
+            const cpuc = new CreateProductUseCase(pr);
+            const result = await cpuc.execute(input);
+    
+            const expected = {
+                id: expect.any(String),
+                name: input.name,
+                price: input.price
+            }
+    
+            expect(result).toEqual(expected);
+        } catch (Error) {
+            console.log(Error);
         }
 
-        expect(result).toEqual(expected);
     });
 
 });

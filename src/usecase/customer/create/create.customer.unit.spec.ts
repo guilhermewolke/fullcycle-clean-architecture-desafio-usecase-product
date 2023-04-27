@@ -46,7 +46,7 @@ describe("unit test create customer use case", () => {
         const ccuc = new CreateCustomerUseCase(cr);
 
         input.name = "";
-        const result = await ccuc.execute(input);
-        await expect(await ccuc.execute(input)).rejects.toThrow("Name is required");
+        
+        await expect(ccuc.execute(input)).rejects.toThrowError("Name is required");
     });
 });
